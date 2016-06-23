@@ -8,19 +8,50 @@ CUB_NS_BEGIN
 
 typedef U32 Status;
 
+enum : Status
+{
+    CUB_RESERVED_FAILURE = 0x80000000
+};
+
+inline bool isSuccessStatus(Status status)
+{
+    return (status & CUB_RESERVED_FAILURE) == 0;
+}
+
+inline bool isFailedStatus(Status status)
+{
+    return !isSuccessStatus(status);
+}
+
+inline constexpr Status successStatus(const U32 status)
+{
+    return status;
+}
+
+inline constexpr Status failedStatus(const U32 status)
+{
+    return status | CUB_RESERVED_FAILURE;
+}
+
 CUB_NS_END
 
 const CUB_NS::U16 CUB_INVALID_U16 = 0xFFFF;
 const CUB_NS::U32 CUB_INVALID_U32 = 0xFFFFFFFF;
 
-#define __DEF_CUB_STATUS(name, value) \
-   const CUB_NS::Status name = value;
+/////////////////////////////////////////////////////////////////
 
-__DEF_CUB_STATUS(CUB_SUCCESS,   0)
-__DEF_CUB_STATUS(CUB_FATAL_BUG, 0xFFFFFFFE)
-__DEF_CUB_STATUS(CUB_FAILURE,   CUB_INVALID_U32)
+enum : cub::Status
+{
+    CUB_SUCCESS = cub::successStatus(0),
 
-#define __CUB_FAILED(result)   (result != CUB_SUCCESS)
+    CUB_FATAL_BUG = cub::failedStatus(0x7FFFFFFE),
+    CUB_FAILURE   = cub::failedStatus(0x7FFFFFFF)
+};
+
+#define __CUB_FAILED(result)   isFailedStatus(result)
 #define __CUB_SUCCESS(result)  (result == CUB_SUCCESS)
+
+#define CUB_IS_SUCC_STATUS(status) isSuccessStatus(status)
+
 
 #endif
