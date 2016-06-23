@@ -1,7 +1,7 @@
 #ifndef H05B2224D_B926_4FC0_A936_67B52B8A98DD
 #define H05B2224D_B926_4FC0_A936_67B52B8A98DD
 
-namespace dci
+namespace details
 {
     typedef unsigned int InterfaceId;
 
@@ -52,7 +52,7 @@ namespace dci
 }
 
 #define UNKNOWN_INTERFACE(iface, iid, ...) \
-struct iface : ::dci::UnknownInterface<iid, ##__VA_ARGS__>
+struct iface : ::details::UnknownInterface<iid, ##__VA_ARGS__>
 
 #endif
 

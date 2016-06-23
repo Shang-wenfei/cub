@@ -3,11 +3,11 @@
 
 #include <cub/dci/InterfaceDef.h>
 
-namespace dci
+namespace com
 {
     UNKNOWN_INTERFACE(Unknown, 0xFFFFFFFE)
     {
-        virtual void* castTo(const InterfaceId iid) const = 0;
+        virtual void* castTo(const ::details::InterfaceId iid) const = 0;
     };
 
     template <typename TO>
@@ -19,7 +19,7 @@ namespace dci
 
 //////////////////////////////////////////////////////////////////////////
 #define BEGIN_INTERFACE_TABLE()                             \
-    virtual void* castTo(const ::dci::InterfaceId iid) const\
+    virtual void* castTo(const ::details::InterfaceId iid) const\
     { switch(iid) {
 
 #define END_INTERFACE_TABLE()                               \
@@ -29,14 +29,14 @@ namespace dci
 
 //////////////////////////////////////////////////////////////////////////
 #define BEGIN_OVERRIDE_INTERFACE_TABLE(super)               \
-    OVERRIDE(void* castTo(const ::dci::InterfaceId iid) const)\
+    OVERRIDE(void* castTo(const ::details::InterfaceId iid) const)\
     {                                                       \
         void* t = super::castTo(iid);                       \
         if (t != 0) return t;                               \
         switch(iid) {
 
 #define BEGIN_OVERRIDE_INTERFACE_TABLE_2(super1, super2)    \
-    OVERRIDE(void* castTo(const ::dci::InterfaceId iid) const)\
+    OVERRIDE(void* castTo(const ::details::InterfaceId iid) const)\
     {                                                       \
         void* t = super1::castTo(iid);                      \
         if (t != 0) return t;                               \
@@ -51,7 +51,7 @@ namespace dci
       return const_cast<iface*>(static_cast<const iface*>(this));
 
 #define APPEND_INTERFACE_TABLE(parent)                      \
-    OVERRIDE(void* castTo(const ::dci::InterfaceId iid) const)\
+    OVERRIDE(void* castTo(const ::details::InterfaceId iid) const)\
     { void* p = parent::castTo(iid);                        \
       if(p != 0) return p;                                  \
       switch(iid) {
@@ -59,13 +59,13 @@ namespace dci
 //////////////////////////////////////////////////////////////////////////
 #define DECL_CONTEXT()                                  \
     private:                                            \
-        const ::dci::Unknown* context;                  \
+        const ::com::Unknown* context;                  \
     public:                                             \
-    void setUserContext(const ::dci::Unknown* context)  \
+    void setUserContext(const ::com::Unknown* context)  \
     {                                                   \
         this->context = context;                        \
     }                                                   \
-    const ::dci::Unknown* getUserContext() const        \
+    const ::com::Unknown* getUserContext() const        \
     {                                                   \
         return context;                                 \
     }
@@ -76,11 +76,11 @@ namespace dci
 #define IMPL_CONTEXT_ROLE(object, role)                 \
     DECL_OBJECT_ROLE(object, role)                      \
     {                                                   \
-       __IMPL_CONTEXT_ROLE(::dci::unknown_cast<role>(context))\
+       __IMPL_CONTEXT_ROLE(::com::unknown_cast<role>(context))\
     }
 
 #define DEF_SIMPLE_CONTEXT(context, super)              \
-struct context : ::dci::Unknown, protected super        \
+struct context : ::com::Unknown, protected super        \
 {                                                       \
     BEGIN_OVERRIDE_INTERFACE_TABLE(super)               \
     END_INTERFACE_TABLE()                               \
