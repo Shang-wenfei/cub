@@ -21,6 +21,11 @@ struct Placement
         return (void*)&u;
     }
 
+    void free()
+    {
+       getObject()->~T();
+    }
+
     T* operator->() const
     {
         return getObject();
