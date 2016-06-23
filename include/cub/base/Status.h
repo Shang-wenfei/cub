@@ -13,45 +13,53 @@ enum : Status
     CUB_RESERVED_FAILURE = 0x80000000
 };
 
-inline bool isSuccessStatus(Status status)
+inline bool isSuccStatus(Status status)
 {
     return (status & CUB_RESERVED_FAILURE) == 0;
 }
 
-inline bool isFailedStatus(Status status)
+inline bool isFailStatus(Status status)
 {
-    return !isSuccessStatus(status);
+    return !isSuccStatus(status);
 }
 
-inline constexpr Status successStatus(const U32 status)
+inline constexpr Status succStatus(const U32 status)
 {
     return status;
 }
 
-inline constexpr Status failedStatus(const U32 status)
+inline constexpr Status failStatus(const U32 status)
 {
     return status | CUB_RESERVED_FAILURE;
 }
 
 CUB_NS_END
 
-const CUB_NS::U16 CUB_INVALID_U16 = 0xFFFF;
-const CUB_NS::U32 CUB_INVALID_U32 = 0xFFFFFFFF;
+enum : CUB_NS::U16
+{
+    CUB_INVALID_U16 = 0xFFFF
+};
+
+enum : CUB_NS::U32
+{
+    CUB_INVALID_U32 = 0xFFFFFFFF
+};
 
 /////////////////////////////////////////////////////////////////
 
 enum : cub::Status
 {
-    CUB_SUCCESS = cub::successStatus(0),
+    CUB_SUCCESS = cub::succStatus(0),
 
-    CUB_FATAL_BUG = cub::failedStatus(0x7FFFFFFE),
-    CUB_FAILURE   = cub::failedStatus(0x7FFFFFFF)
+    CUB_FATAL_BUG = cub::failStatus(0x7FFFFFFE),
+    CUB_FAILURE   = cub::failStatus(0x7FFFFFFF)
 };
 
-#define __CUB_FAILED(result)   isFailedStatus(result)
-#define __CUB_SUCCESS(result)  (result == CUB_SUCCESS)
+/////////////////////////////////////////////////////////////////
+#define __CUB_FAILED(result)   cub::isFailStatus(result)
+//#define __CUB_SUCCESS(result)  (result == CUB_SUCCESS)
 
-#define CUB_IS_SUCC_STATUS(status) isSuccessStatus(status)
+#define CUB_IS_SUCC_STATUS(status) cub::isSuccStatus(status)
 
 
 #endif
