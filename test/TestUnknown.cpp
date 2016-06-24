@@ -78,7 +78,7 @@ namespace
         U8 percent;
     };
 
-    struct Human : dci::Unknown
+    struct Human : com::Unknown
                  , private Worker
                  , private SleepInfo
     {
@@ -88,7 +88,7 @@ namespace
         END_INTERFACE_TABLE()
     };
 
-    struct Robot : dci::Unknown
+    struct Robot : com::Unknown
                  , private Worker
                  , private ChargeInfo
     {
@@ -104,15 +104,15 @@ FIXTURE(UnknownTest)
     TEST("should cast to the exist interface")
 	{
 	    Human human;
-	    dci::Unknown * unknown = &human;
+	    com::Unknown * unknown = &human;
 
-	    Worker* worker = dci::unknown_cast<Worker>(unknown);
+	    Worker* worker = com::unknown_cast<Worker>(unknown);
 	    ASSERT_THAT(__NOT_NULL(worker), be_true());
 
 	    worker->produce();
 	    ASSERT_THAT(worker->getProduceNum(), eq(1));
 
-	    SleepInfo * info = dci::unknown_cast<SleepInfo>(unknown);
+	    SleepInfo * info = com::unknown_cast<SleepInfo>(unknown);
 	    ASSERT_THAT(__NOT_NULL(info), be_true());
 
 	    info->sleep();
@@ -125,12 +125,12 @@ FIXTURE(UnknownTest)
     TEST("should return null when cast to unexist interface")
 	{
 	    Robot robot;
-	    dci::Unknown * unknown = &robot;
+	    com::Unknown * unknown = &robot;
 
-	    Worker* worker = dci::unknown_cast<Worker>(unknown);
+	    Worker* worker = com::unknown_cast<Worker>(unknown);
 	    ASSERT_THAT(__NOT_NULL(worker), be_true());
 
-	    SleepInfo * info = dci::unknown_cast<SleepInfo>(unknown);
+	    SleepInfo * info = com::unknown_cast<SleepInfo>(unknown);
 	    ASSERT_THAT(__IS_NULL(info), be_true());
 	}
 };

@@ -1,6 +1,6 @@
-#include <cut/cut.hpp>
 #include <cub/mem/LinkedAllocator.h>
 #include <cub/repo/array/ArraySize.h>
+#include <cut/cut.hpp>
 
 USING_CUM_NS
 USING_CUB_NS
