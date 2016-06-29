@@ -177,7 +177,7 @@ FIXTURE(HashMapTest)
 	{
 		HashMap<int, int, 1> map;
 
-		ASSERT_THAT(__CUB_SUCCESS(map.put(1, 2)), be_true());
+		ASSERT_THAT(__CUB_FAILED(map.put(1, 2)), be_false());
 
 		ASSERT_THAT(map.full(), be_true());
 	}
@@ -198,7 +198,7 @@ FIXTURE(HashMapTest)
 		HashMap<int, int, 1> map;
 
 		map.put(1, 2);
-		ASSERT_THAT(__CUB_SUCCESS(map.put(1, 4)), be_true());
+		ASSERT_THAT(__CUB_FAILED(map.put(1, 4)), be_false());
 
 		ASSERT_THAT(map.size(), eq(1));
 		ASSERT_THAT(map[1], eq(4));

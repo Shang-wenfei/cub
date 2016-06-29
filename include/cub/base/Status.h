@@ -47,7 +47,7 @@ enum : CUB_NS::U32
 
 /////////////////////////////////////////////////////////////////
 
-enum : cub::Status
+enum CubStatus: cub::Status
 {
     CUB_SUCCESS = cub::succStatus(0),
 
@@ -57,7 +57,6 @@ enum : cub::Status
 
 /////////////////////////////////////////////////////////////////
 #define __CUB_FAILED(result)   cub::isFailStatus(result)
-//#define __CUB_SUCCESS(result)  (result == CUB_SUCCESS)
 
 #define CUB_IS_SUCC_STATUS(status) cub::isSuccStatus(status)
 

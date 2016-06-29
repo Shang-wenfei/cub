@@ -302,7 +302,7 @@ private:
 
     Node* find(const KEY& key) const
     {
-        Node* node = buckets[getIndex(key)].search(NodePred(key));
+        Node* node = buckets[getIndex(key)].search([&](const Node& node){return equalFn(node.key, key);});
         if(__IS_NULL(node))
         {
             return __null_ptr;
@@ -310,28 +310,6 @@ private:
 
         return node;
     }
-
-private:
-    struct NodePred
-    {
-        NodePred(const KEY& key)
-        : key(key)
-        {
-        }
-
-        NodePred(const NodePred& other)
-        : key(other.key)
-        {
-        }
-
-        bool operator()(const Node& node) const
-        {
-            return EQUAL_FN()(node.key, key);
-        }
-
-    private:
-        const KEY& key;
-    };
 
 private:
     typedef List<Node> Bucket;
