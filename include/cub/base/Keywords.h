@@ -20,11 +20,7 @@ namespace details
 
 #define ABSTRACT(...) virtual __VA_ARGS__ = 0
 
-#if __SUPPORT_VIRTUAL_OVERRIDE
-#   define OVERRIDE(...) virtual __VA_ARGS__ override
-#else
-#   define OVERRIDE(...) virtual __VA_ARGS__
-#endif
+#define OVERRIDE(...) virtual __VA_ARGS__ override
 
 #define EXTENDS(...) , ##__VA_ARGS__
 #define IMPLEMENTS(...) EXTENDS(__VA_ARGS__)

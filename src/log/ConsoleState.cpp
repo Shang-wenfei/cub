@@ -110,6 +110,8 @@ unsigned int Infra_Printf
     if(inst == 0) StdoutListener::create(true);
     StdoutListener::getInstance().println(level, buff);
 
+    va_end(vaList);
+
     return 0;
 }
 
