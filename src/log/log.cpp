@@ -14,7 +14,7 @@ CUB_NS_BEGIN
 #define ERROR_LEVEL     (U8)0x08
 #define FATAL_LEVEL     (U8)0x10
 
-unsigned int Infra_Printf
+unsigned int infraPrintf
     ( U16   /* module */
     , U32   /* errId */
     , U8     level

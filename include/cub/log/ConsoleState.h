@@ -25,7 +25,7 @@ private:
 
 ////////////////////////////////////////////////////////
 #define DEF_COLOR_STATE(state)                       \
-struct state : public ConsoleState                   \
+struct state : ConsoleState                          \
 {                                                    \
    state(bool colorful) : ConsoleState(colorful)     \
    {}                                                \

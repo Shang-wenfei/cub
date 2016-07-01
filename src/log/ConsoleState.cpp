@@ -84,7 +84,7 @@ void StdoutListener::println(const U8 level, const char* msg)
 
     switch(level)
     {
-    case FT_FATAL_LEVEL: doPrint(fail, msg); break;
+    ON_LEVEL(FT_FATAL_LEVEL, fail)
     ON_LEVEL(FT_ERR_LEVEL,   fail)
     ON_LEVEL(FT_DEBUG_LEVEL, debug)
     ON_LEVEL(FT_INFO_LEVEL,  info)
@@ -94,7 +94,7 @@ void StdoutListener::println(const U8 level, const char* msg)
 }
 
 //////////////////////////////////////////////////////////////////////////
-unsigned int Infra_Printf
+unsigned int infraPrintf
     ( U16   /* module */
     , U32   /* errId */
     , U8     level
