@@ -19,7 +19,7 @@ namespace com
 
 //////////////////////////////////////////////////////////////////////////
 #define BEGIN_INTERFACE_TABLE()                             \
-    virtual void* castTo(const ::details::InterfaceId iid) const\
+    virtual void* castTo(const ::details::InterfaceId iid) const override \
     { switch(iid) {
 
 #define END_INTERFACE_TABLE()                               \

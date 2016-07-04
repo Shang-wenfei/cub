@@ -10,14 +10,14 @@
 
 //////////////////////////////////////////////////////////////////
 #define IMPL_ROLE(role)                                       \
-ROLE_PROTO_TYPE(role)                                         \
+ROLE_PROTO_TYPE(role) override                                \
 {                                                             \
    return const_cast<role&>(static_cast<const role&>(*this)); \
 }
 
 //////////////////////////////////////////////////////////////////
 #define IMPL_ROLE_WITH_TYPE(role, type)                       \
-ROLE_PROTO_TYPE(role)                                         \
+ROLE_PROTO_TYPE(role) override                                \
 {                                                             \
    return const_cast<type&>(static_cast<const type&>(*this)); \
 }
@@ -28,7 +28,7 @@ ROLE_PROTO_TYPE(role)                                         \
 //////////////////////////////////////////////////////////////////
 #define IMPL_ROLE_WITH_VAR(role, type)             \
 private:                                           \
-   ROLE_PROTO_TYPE(role)                           \
+   ROLE_PROTO_TYPE(role)  override                 \
    { return const_cast<type&>(__TYPE_VAR(type)); } \
    type __TYPE_VAR(type)
 
@@ -37,7 +37,7 @@ private:                                           \
 //////////////////////////////////////////////////////////////////
 #define IMPL_ROLE_WITH_ROLE_VAR(role)         \
 private:                                      \
-   ROLE_PROTO_TYPE(role)                      \
+   ROLE_PROTO_TYPE(role) override             \
    { return const_cast<role&>(role##var); }   \
    role __ROLE_VAR(role)
 

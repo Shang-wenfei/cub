@@ -47,7 +47,7 @@ namespace
             vsnprintf(errInfo, BUFF_SIZE, fmt, paramList);
         }
 
-        Infra_Printf( 0, 0, prnLevel, "%s:%lu: %s ", getBaseName(file), line, errInfo);
+        infraPrintf( 0, 0, prnLevel, "%s:%lu: %s ", getBaseName(file), line, errInfo);
     }
 }
 
