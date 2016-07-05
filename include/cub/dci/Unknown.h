@@ -18,13 +18,13 @@ namespace com
 }
 
 //////////////////////////////////////////////////////////////////////////
-#define BEGIN_INTERFACE_TABLE()                             \
-    virtual void* castTo(const ::details::InterfaceId iid) const override \
+#define BEGIN_INTERFACE_TABLE()                                    \
+    OVERRIDE(void* castTo(const ::details::InterfaceId iid) const) \
     { switch(iid) {
 
 #define END_INTERFACE_TABLE()                               \
     case 0xFFFFFFFF:                                        \
-    default: return 0; }}
+    default: return nullptr; }}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -32,16 +32,16 @@ namespace com
     OVERRIDE(void* castTo(const ::details::InterfaceId iid) const)\
     {                                                       \
         void* t = super::castTo(iid);                       \
-        if (t != 0) return t;                               \
+        if (t != nullptr) return t;                         \
         switch(iid) {
 
 #define BEGIN_OVERRIDE_INTERFACE_TABLE_2(super1, super2)    \
     OVERRIDE(void* castTo(const ::details::InterfaceId iid) const)\
     {                                                       \
         void* t = super1::castTo(iid);                      \
-        if (t != 0) return t;                               \
+        if (t != nullptr) return t;                         \
         t = super2::castTo(iid);                            \
-        if (t != 0) return t;                               \
+        if (t != nullptr) return t;                         \
         switch(iid) {
 
 #define END_OVERRIDE_INTERFACE_TABLE(super) END_INTERFACE_TABLE()
@@ -53,7 +53,7 @@ namespace com
 #define APPEND_INTERFACE_TABLE(parent)                      \
     OVERRIDE(void* castTo(const ::details::InterfaceId iid) const)\
     { void* p = parent::castTo(iid);                        \
-      if(p != 0) return p;                                  \
+      if(p != nullptr) return p;                            \
       switch(iid) {
 
 //////////////////////////////////////////////////////////////////////////
