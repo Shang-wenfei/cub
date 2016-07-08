@@ -1,5 +1,5 @@
-#ifndef INCL_CODEC_FIX_SIZE_BUFF_H
-#define INCL_CODEC_FIX_SIZE_BUFF_H
+#ifndef H5712E6CD_DEFF_4A3B_93C0_C074CD80C63B
+#define H5712E6CD_DEFF_4A3B_93C0_C074CD80C63B
 
 #include <cub/cub.h>
 #include <memory.h>
