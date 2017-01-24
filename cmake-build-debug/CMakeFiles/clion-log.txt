@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/darwin/project/cpp/cub
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/darwin/project/cpp/cub/cmake-build-debug

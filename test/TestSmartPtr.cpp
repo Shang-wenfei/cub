@@ -19,7 +19,8 @@ namespace
             return destroyedNum;
         }
 
-        IMPL_ROLE(SharedObject);
+		  SharedObject& getSharedObject() { return *this; }
+        //IMPL_ROLE(SharedObject);
 
     private:
         OVERRIDE(void destroy())

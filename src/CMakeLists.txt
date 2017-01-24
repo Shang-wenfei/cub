@@ -5,7 +5,7 @@ FILE(GLOB_RECURSE all_files
 *.c
 *.C)
 
-add_library(cub STATIC ${all_files})
+add_library(cub STATIC ${all_files} ../include/cub/network/ByteOrder.h ../test/TestByteOrder.cpp)
 
 install(TARGETS cub ARCHIVE DESTINATION lib)
 

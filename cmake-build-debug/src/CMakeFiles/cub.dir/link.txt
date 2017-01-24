@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libcub.a  CMakeFiles/cub.dir/log/ConsoleState.cpp.o CMakeFiles/cub.dir/log/log.cpp.o CMakeFiles/cub.dir/mem/MsgAllocator.cpp.o CMakeFiles/cub.dir/mem/SharedObject.cpp.o CMakeFiles/cub.dir/sched/Executor.cpp.o CMakeFiles/cub.dir/__/test/TestByteOrder.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libcub.a
