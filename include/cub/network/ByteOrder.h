@@ -6,7 +6,13 @@
 #include <arpa/inet.h>
 
 CUB_NS_BEGIN
+uint64_t htonll(uint64_t val) {
+    return (((uint64_t) htonl(val)) << 32) + htonl(val >> 32);
+}
 
+uint64_t ntohll(uint64_t val) {
+    return (((uint64_t) ntohl(val)) << 32) + ntohl(val >> 32);
+}
 inline U8  hton(U8  v) { return v;         }
 inline U16 hton(U16 v) { return htons(v);  }
 inline U32 hton(U32 v) { return htonl(v);  }
